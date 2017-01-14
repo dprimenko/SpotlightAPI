@@ -1,5 +1,5 @@
 var User = require('../models/user.js');
-var utils = require('../utils.js')
+var utils = require('../utils/utils.js')
 
 exports.setupUser = function(req, res, callback) {
 
@@ -26,28 +26,29 @@ exports.setupUser = function(req, res, callback) {
 
 				user.save(function(err, user) {
 					if (!err) {
-						console.log('POST /users');
 						res.status(200).jsonp(user);
 						callback(true);
 					}else {
-						console.log('ERROR: ' + err);
 						callback(false);
 					}
 				});
 			});	
 		} else {
-			res.send("El usuario ya existe");
+			res.send("User already exists.");
 		}
+	});
+};
+
+exports.findAllUsers = function(req, res) {
+	User.find({}, function(err, users) {
+		if (!err) {
+  			res.status(200).jsonp(users);
+  		}
 	});
 };
 
 function userExists(country, number, callback) {
 	User.find({country_code: country, number_phone: number}, function(err, user) {
-		if (user.length) {
-			callback(true);
-		}
-		else {
-			callback(false);
-		}
+		callback(user.length);
 	});
 };

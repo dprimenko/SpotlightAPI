@@ -34,7 +34,7 @@ exports.addEvent = function(req, res) {
 			category : 		req.body.category,
 			datetime_from : req.body.datetime_from,
 			datetime_to : 	req.body.datetime_to,
-			people : 		req.body.people
+			people_in : 	req.body.people_in
 		});
 
 		event.save(function(err, event) {
@@ -73,14 +73,12 @@ exports.updateEvent = function(req, res) {
 
 // DELETE
 exports.deleteEvent = function(req,res) {
-	Event.findById(req.params.id, function(err, event) {
-			event.remove(function(err) {
-				if(!err) {
-  					console.log('DELETE /events/' + req.params.id);
-  					res.send(200, "Evento eliminado");
-  				} else {
-  					res.send(500, err.message);
-  				}
-			});
-		});
+	Event.remove({"_id" : req.params.id}, function(err) {
+		if (!err) {
+			res.send(200, "Eventos eliminados");
+		}
+		else {
+  			res.send(500, err.message);
+  		}
+	});
 };

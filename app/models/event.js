@@ -1,16 +1,16 @@
 var mongoose = require('mongoose');
 
 var eventModel = mongoose.model('Event', new mongoose.Schema({
-	creator : { type: String },
-	title : { type: String },
-	img : { type: String },
-	address : { type: String },
-	description : { type: String },
+	creator : String,
+	title : String,
+	img : String ,
+	address : String,
+	description : String,
 	category : {type: String, enum: [
 		'Disco', 'Pub', 'Festival', 'Concert', 'Sports', 'Public']},
-	datetime_from : { type: String },
-	datetime_to : { type: String },
-	people_in : { type: Array}
+	datetime_from : String,
+	datetime_to : String,
+	people_in : [String]
 }));
 
-module.exports =  eventModel;
+module.exports = eventModel;
