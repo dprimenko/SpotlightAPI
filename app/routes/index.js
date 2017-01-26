@@ -20,5 +20,8 @@ router.route('/events/:id')
 	.put(eController.updateEvent)
 	.delete(eController.deleteEvent);
 
+router.route('/users/:number_phone')
+	.get(uController.findUserByNumberPhone);
+
 module.exports = router;
 

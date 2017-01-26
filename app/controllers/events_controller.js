@@ -4,7 +4,6 @@ var Event = require('../models/event.js');
 exports.findAllEvents = function(req, res) {
 		Event.find({}, function(err, events) {
 			if (!err) {
-				console.log('GET /events')
   				res.status(200).jsonp(events);
 			} else {
 				console.log('ERROR: ' + err);
@@ -15,7 +14,6 @@ exports.findAllEvents = function(req, res) {
 exports.findEventById = function(req, res) {
 		Event.findById(req.params.id, function(err, event) {
 			if (!err) {
-				console.log('GET /events/' + req.params.id);
 				res.status(200).jsonp(event);
 			} else {
 				console.log('ERROR: ' + err);
@@ -39,7 +37,6 @@ exports.addEvent = function(req, res) {
 
 		event.save(function(err, event) {
 			if(!err) {
-				console.log('POST /events');
   				res.status(200).jsonp(event);
   			} else {
   				console.log('ERROR: ' + err);
@@ -62,7 +59,6 @@ exports.updateEvent = function(req, res) {
 
 			event.save(function(err) {
 				if(!err) {
-  					console.log('PUT /events/' + req.params.id);
   					res.status(200).jsonp(event);
   				} else {
   					console.log('ERROR: ' + err);
