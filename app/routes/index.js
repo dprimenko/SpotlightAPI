@@ -15,13 +15,16 @@ router.route('/events')
 	.get(eController.findAllEvents)
 	.post(eController.addEvent);
 
-router.route('/events/:id')
+router.route('/event/id/:id')
 	.get(eController.findEventById)
 	.put(eController.updateEvent)
 	.delete(eController.deleteEvent);
 
-router.route('/users/:number_phone')
+router.route('/user/numberphone/:number_phone')
 	.get(uController.findUserByNumberPhone);
+
+router.route('/user/id/:id')
+	.get(uController.findUserById);
 
 module.exports = router;
 

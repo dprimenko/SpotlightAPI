@@ -1,13 +1,13 @@
 {
-	"number_phone" : "0034637190262",
-	"profile_img" : "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/b2/b2bdaf58f7a230622c0d87db0a7b9878fd073367_full.jpg",
-	"nick" : "@fredaikisab",
-	"full_name" : "Fradaikis Unknown",
-	"email" : "fredab@gmail.com",
+	"number_phone" : "0055555555555",
+	"profile_img" : "",
+	"nick" : "",
+	"full_name" : "",
+	"email" : "",
 	"type_acc" : "Normal",
 	"sp_api_key_id" : "",
-	"followers" : [],
+	"last_login" : "",
+	"created" : "",
 	"following" : [],
-	"last_login" : "2016-15-05 13:00",
-	"created" : "2016-15-04 11:00"
+	"followers" : []
 }

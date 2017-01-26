@@ -1,5 +1,6 @@
 var User = require('../models/user.js');
 var utils = require('../utils/utils.js')
+var mongo = require('mongodb');
 
 exports.setupUser = function(req, res, callback) {
 
@@ -27,18 +28,30 @@ exports.setupUser = function(req, res, callback) {
 						res.status(200).jsonp(user);
 						callback(true);
 					}else {
+						res.jsonp('{"error" : "' + err +'"}"');
 						callback(false);
 					}
 				});
 			});	
 		} else {
-			res.send("User already exists.");
+			res.send('{"error" : "10", "message" : "User already exists"}')
 		}
 	});
 };
 
 exports.findUserByNumberPhone = function(req,res) {
 	User.find({number_phone: req.params.number_phone}, function(err, user) {
+		if (!err) {
+			res.status(200).jsonp(user);
+		}
+	});
+};
+
+exports.findUserById = function(req,res) {
+
+	var rid = new mongo.ObjectID(req.params.id);
+
+	User.find({_id: rid}, function(err, user) {
 		if (!err) {
 			res.status(200).jsonp(user);
 		}
