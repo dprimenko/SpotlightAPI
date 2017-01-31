@@ -66,6 +66,35 @@ exports.findAllUsers = function(req, res) {
 	});
 };
 
+exports.updateUser = function(req, res) {
+
+		var rid = new mongo.ObjectID(req.params.id);
+		var update = { $set: {
+				number_phone: req.body.number_phone,
+				nick: req.body.nick,
+				full_name: req.body.full_name,
+				email: req.body.email,
+				type_acc: req.body.type_acc,
+				last_login: req.body.last_login,
+				created: req.body.created,
+				followers: req.body.followers,
+				following: req.body.following 
+			}
+		};
+		var options = { upsert: false };
+
+		User.update({_id: rid}, update, options, callback);
+		
+		function callback(err, numAfected) {
+			if(!err) {
+				var response = {affected: numAfected};	
+  				res.send(response);
+  			} else {
+  				console.log('ERROR: ' + err);
+  			}
+		}
+	};
+
 function userExists(number, callback) {
 	User.find({number_phone: number}, function(err, user) {
 		callback(user.length);

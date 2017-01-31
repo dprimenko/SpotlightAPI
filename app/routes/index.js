@@ -24,7 +24,8 @@ router.route('/user/numberphone/:number_phone')
 	.get(uController.findUserByNumberPhone);
 
 router.route('/user/id/:id')
-	.get(uController.findUserById);
+	.get(uController.findUserById)
+	.put(uController.updateUser);
 
 module.exports = router;
 
