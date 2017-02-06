@@ -1,20 +1,21 @@
-var Event = require('../models/event.js');
+var Place = require('../models/place.js');
+var mongo = require('mongodb');
 
 // GET
-exports.findAllEvents = function(req, res) {
-		Event.find({}, function(err, events) {
+exports.findAllPlaces = function(req, res) {
+		Place.find({}, function(err, places) {
 			if (!err) {
-  				res.status(200).jsonp(events);
+  				res.status(200).jsonp(places);
 			} else {
 				console.log('ERROR: ' + err);
 			}
 		});
 	};
 
-exports.findEventById = function(req, res) {
-		Event.findById(req.params.id, function(err, event) {
+exports.findPlaceById = function(req, res) {
+		Place.findById(req.params.id, function(err, place) {
 			if (!err) {
-				res.status(200).jsonp(event);
+				res.status(200).jsonp(place);
 			} else {
 				console.log('ERROR: ' + err);
 			}
@@ -22,17 +23,17 @@ exports.findEventById = function(req, res) {
 	};
 
 // POST
-exports.addEvent = function(req, res) {
-		var event = new Event({
+exports.addPlace= function(req, res) {
+		var event = new Place({
 			creator : 		req.body.creator,
 			title : 		req.body.title,
 			img : 			req.body.img,
 			address : 		req.body.address,
 			description : 	req.body.description,
 			category : 		req.body.category,
-			datetime_from : req.body.datetime_from,
-			datetime_to : 	req.body.datetime_to,
-			people_in : 	req.body.people_in
+			datetime_from : new Date(req.body.datetime_from),
+			datetime_to : 	new Date(req.body.datetime_to),
+			users_in : 	req.body.users_in
 		});
 
 		event.save(function(err, event) {
@@ -45,8 +46,8 @@ exports.addEvent = function(req, res) {
 	};
 
 // PUT
-exports.updateEvent = function(req, res) {
-		Event.findById(req.params.id, function(err, event) {
+/*exports.updateEvent = function(req, res) {
+		Place.findById(req.params.id, function(err, event) {
 			event.creator = req.body.creator;
 			event.title = req.body.title;
 			event.img = req.body.img;
@@ -65,11 +66,11 @@ exports.updateEvent = function(req, res) {
   				}
 			});
 		});
-	};
+	};*/
 
 // DELETE
-exports.deleteEvent = function(req,res) {
-	Event.remove({"_id" : req.params.id}, function(err) {
+exports.deletePlace = function(req,res) {
+	Place.remove({"_id" : req.params.id}, function(err) {
 		if (!err) {
 			res.send(200, "Eventos eliminados");
 		}

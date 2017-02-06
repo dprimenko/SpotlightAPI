@@ -12,13 +12,15 @@ exports.setupUser = function(req, res, callback) {
 				var user = new User({
 				number_phone : req.body.number_phone,
 				profile_img : req.body.profile_img,
-				nick : req.body.nick,
+				background_img: req.body.background_img,
+				username : req.body.username,
 				full_name : req.body.full_name,
 				email : req.body.email,
 				type_acc : req.body.type_acc,
-				sp_api_key_id : genApikey,				
+				public_api_key : genApikey,
+				private_api_key : "",
 				last_login : req.body.last_login,
-				created : req.body.created,
+				created_at_at : req.body.created_at,
 				followers : req.body.followers,
 				following : req.body.following
 				});
@@ -71,12 +73,14 @@ exports.updateUser = function(req, res) {
 		var rid = new mongo.ObjectID(req.params.id);
 		var update = { $set: {
 				number_phone: req.body.number_phone,
-				nick: req.body.nick,
+				profile_img: req.body.profile_img,
+				background_img: req.body.background_img,
+				username: req.body.username,
 				full_name: req.body.full_name,
 				email: req.body.email,
 				type_acc: req.body.type_acc,
 				last_login: req.body.last_login,
-				created: req.body.created,
+				created_at: req.body.created_at,
 				followers: req.body.followers,
 				following: req.body.following 
 			}
